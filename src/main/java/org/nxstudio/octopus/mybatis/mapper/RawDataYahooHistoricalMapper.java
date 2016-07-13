@@ -1,0 +1,46 @@
+/**
+ *
+ */
+package org.nxstudio.octopus.mybatis.mapper;
+
+import java.util.Date;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+import org.nxstudio.octopus.mybatis.model.RawDataYahooHistorical;
+import org.springframework.beans.factory.annotation.Value;
+
+/**
+ * @author TimoYe
+ */
+public interface RawDataYahooHistoricalMapper {
+
+	/**
+	 * insert
+	 *
+	 * @param object
+	 * @return
+	 */
+	@Insert("REPLACE INTO `raw_data_yahoo`.`historical` (`symbol`,`timestamp`,`close`,`high`,`low`,`open`,`volume`,`adj_close`) "
+	                + "VALUES (#{symbol},#{timestamp},#{close},#{high},#{low},#{open},#{volume},#{adjClose})")
+	public int insert(RawDataYahooHistorical object);
+
+	/**
+	 * getEarliestHistoricalDate
+	 *
+	 * @param symbol
+	 * @return
+	 */
+	@Select("SELECT MIN(timestamp) FROM `raw_data_yahoo`.`historical` WHERE symbol=#{symbol}")
+	public Date getEarliestHistoricalDate(@Value("symbol") String symbol);
+
+	/**
+	 * getHistoricalYears
+	 *
+	 * @param symbol
+	 * @return
+	 */
+	@Select("SELECT DISTINCT YEAR(timestamp) FROM `raw_data_yahoo`.`historical` WHERE symbol=#{symbol}")
+	public List<Integer> getHistoricalYears(@Value("symbol") String symbol);
+}
