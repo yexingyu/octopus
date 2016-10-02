@@ -8,8 +8,6 @@ import java.util.concurrent.Executors;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.nxstudio.octopus.mybatis.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,9 +21,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class Application {
-	private final static Logger	l	= LoggerFactory.getLogger(Application.class);
 	@Autowired
-	private Environment			env;
+	private Environment env;
 
 	@Bean
 	public SqlSessionFactory getSqlSessionFactory() {
