@@ -16,6 +16,8 @@ import org.nxstudio.octopus.mybatis.mapper.RawDataYahooDividendMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataYahooHistoricalMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataYahooMinutelyMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataYahooQuoteMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,13 +25,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SessionFactory {
-	private static SqlSessionFactory factory;
+	private final static Logger			l	= LoggerFactory.getLogger(SessionFactory.class);
+	private static SqlSessionFactory	factory;
 
 	private static void create(String driver, String url, String username, String password) {
-		PooledDataSource dataSource = new PooledDataSource(driver, url, username, password);
-		TransactionFactory transactionFactory = new JdbcTransactionFactory();
-		Environment environment = new Environment("development", transactionFactory, dataSource);
-		Configuration configuration = new Configuration(environment);
+		final PooledDataSource dataSource = new PooledDataSource(driver, url, username, password);
+		final TransactionFactory transactionFactory = new JdbcTransactionFactory();
+		final Environment environment = new Environment("development", transactionFactory, dataSource);
+		final Configuration configuration = new Configuration(environment);
 		configuration.addMapper(RawDataNasdaqCompanyMapper.class);
 		configuration.addMapper(RawDataYahooMinutelyMapper.class);
 		configuration.addMapper(RawDataYahooDividendMapper.class);
@@ -37,8 +40,9 @@ public class SessionFactory {
 		configuration.addMapper(RawDataYahooHistoricalMapper.class);
 		configuration.addMapper(OctopusSymbolMapper.class);
 
-		SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+		final SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 		factory = builder.build(configuration);
+
 	}
 
 	public static SqlSessionFactory build(String driver, String url, String username, String password) {
