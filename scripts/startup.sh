@@ -10,4 +10,4 @@ cd ${__ScriptPath}/../
 
 java -cp "lib/*" org.nxstudio.octopus.Application 2>&1 > /dev/null &
 
-echo ${date}": started octopus."
+echo $(date)": started octopus."
