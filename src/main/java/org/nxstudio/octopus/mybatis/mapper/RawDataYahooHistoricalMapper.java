@@ -43,4 +43,14 @@ public interface RawDataYahooHistoricalMapper {
 	 */
 	@Select("SELECT DISTINCT YEAR(timestamp) FROM `raw_data_yahoo`.`historical` WHERE symbol=#{symbol}")
 	public List<Integer> getHistoricalYears(@Value("symbol") String symbol);
+
+	/**
+	 * getAll
+	 *
+	 * @param symbol
+	 * @return
+	 */
+	@Select("SELECT symbol, timestamp, open, high, low, close, volume, adj_close as adjClose, modified FROM `raw_data_yahoo`.`historical` "
+	                + "WHERE symbol=#{symbol} order by timestamp")
+	public List<RawDataYahooHistorical> getAll(@Value("symbol") String symbol);
 }

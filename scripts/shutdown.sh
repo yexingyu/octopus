@@ -9,7 +9,11 @@ export __PWD=${PWD%/}
 cd ${__ScriptPath}/../
 
 APP_ID="OCTOPUS-WEBSERVICE"
+PID=$(ps ax | grep -i "${APP_ID}" | grep java | grep "Application" | grep -v grep | awk '{print $1}')
 
-java -cp "lib/*" org.nxstudio.octopus.Application "${APP_ID}" 2>&1 > /dev/null &
-
-echo $(date)": started octopus."
+if [ -z "$PIDS" ]; then
+	echo "No Octopus Webservice to stop"
+	exit 1
+else 
+	kill -s TERM ${PID}
+fi

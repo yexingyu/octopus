@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.nxstudio.octopus.mybatis.mapper.OctopusSymbolMapper;
+import org.nxstudio.octopus.mybatis.mapper.PredictionMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataNasdaqCompanyMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataYahooDividendMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataYahooHistoricalMapper;
@@ -39,6 +40,7 @@ public class SessionFactory {
 		configuration.addMapper(RawDataYahooQuoteMapper.class);
 		configuration.addMapper(RawDataYahooHistoricalMapper.class);
 		configuration.addMapper(OctopusSymbolMapper.class);
+		configuration.addMapper(PredictionMapper.class);
 
 		final SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 		factory = builder.build(configuration);
