@@ -15,5 +15,5 @@ if [ -z "$PIDS" ]; then
 	echo "No Octopus Webservice to stop"
 	exit 1
 else 
-	kill -s TERM ${PID}
+	kill -s TERM ${PIDS}
 fi
