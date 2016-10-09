@@ -9,7 +9,7 @@ export __PWD=${PWD%/}
 cd ${__ScriptPath}/../
 
 APP_ID="OCTOPUS-WEBSERVICE"
-PID=$(ps ax | grep -i "${APP_ID}" | grep java | grep "Application" | grep -v grep | awk '{print $1}')
+PIDS=$(ps ax | grep -i "${APP_ID}" | grep java | grep "Application" | grep -v grep | awk '{print $1}')
 
 if [ -z "$PIDS" ]; then
 	echo "No Octopus Webservice to stop"
