@@ -17,8 +17,6 @@ import org.nxstudio.octopus.mybatis.mapper.RawDataYahooDividendMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataYahooHistoricalMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataYahooMinutelyMapper;
 import org.nxstudio.octopus.mybatis.mapper.RawDataYahooQuoteMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,8 +24,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SessionFactory {
-	private final static Logger			l	= LoggerFactory.getLogger(SessionFactory.class);
-	private static SqlSessionFactory	factory;
+	private static SqlSessionFactory factory;
 
 	private static void create(String driver, String url, String username, String password) {
 		final PooledDataSource dataSource = new PooledDataSource(driver, url, username, password);
