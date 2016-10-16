@@ -6,6 +6,7 @@ package org.nxstudio.octopus.mybatis.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.nxstudio.octopus.mybatis.model.RawDataYahooDividend;
 
@@ -18,5 +19,5 @@ public interface RawDataYahooDividendMapper {
 	public int replace(RawDataYahooDividend object);
 
 	@Select("SELECT symbol, timestamp, dividend FROM `raw_data_yahoo`.`dividend` WHERE symbol=#{symbol} order by timestamp")
-	public List<RawDataYahooDividend> getAll(String symbol);
+	public List<RawDataYahooDividend> getAll(@Param("symbol") String symbol);
 }

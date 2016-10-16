@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.ImmutableList;
+
 @Service
 public class SymbolService {
 	private final static Logger	l	= LoggerFactory.getLogger(SymbolService.class);
@@ -34,7 +36,7 @@ public class SymbolService {
 			return mapper.getAllSymbols();
 		} catch (Exception e) {
 			l.error("SymbolService.getAllSymbols: Exception", e);
-			return null;
+			return ImmutableList.of();
 		} finally {
 			session.close();
 		}
