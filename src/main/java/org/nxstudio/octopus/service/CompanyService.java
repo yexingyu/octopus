@@ -39,7 +39,7 @@ public class CompanyService {
 			return mapper.getAll(symbol);
 		} catch (Exception e) {
 			l.error("CompanyService.getHistoricalDaily: Exception", e);
-			return null;
+			return ImmutableList.of();
 		} finally {
 			session.close();
 		}
@@ -59,7 +59,7 @@ public class CompanyService {
 			return mapper.getAll(symbol);
 		} catch (Exception e) {
 			l.error("CompanyService.getAllDividends: Exception", e);
-			return null;
+			return ImmutableList.of();
 		} finally {
 			session.close();
 		}

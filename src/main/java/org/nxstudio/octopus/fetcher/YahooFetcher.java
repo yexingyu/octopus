@@ -53,7 +53,7 @@ import com.google.common.net.UrlEscapers;
 public class YahooFetcher {
 	private final static Logger	l					= LoggerFactory.getLogger(YahooFetcher.class);
 	private final static String	URL_TPL_MINUTELY	= "https://chartapi.finance.yahoo.com/instrument/1.0/%s/chartdata;type=quote;range=1d/csv";
-	private final static String	URL_TPL_YEARLY		= "https://chartapi.finance.yahoo.com/instrument/1.0/%s/chartdata;type=quote;ys=%s;yz=0/csv";
+	//private final static String	URL_TPL_YEARLY		= "https://chartapi.finance.yahoo.com/instrument/1.0/%s/chartdata;type=quote;ys=%s;yz=0/csv";
 	private final static String	URL_YQL				= "https://query.yahooapis.com/v1/public/yql?q=%s";
 	private final static String	URL_YQL_TAIL		= "&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
 	@Autowired

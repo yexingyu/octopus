@@ -68,7 +68,7 @@ public class ChartsController {
 	public List<Object[]> getPrediction(@PathVariable("symbol") String symbol, @PathVariable("type") String type) {
 		final PREDICTION_TYPE predictionType = PREDICTION_TYPE.valueOf(type.toUpperCase());
 		final List<Object[]> result = new LinkedList<>();
-		for (Prediction record : predictionService.getAllOpen(symbol.toUpperCase(), predictionType)) {
+		for (Prediction record : predictionService.getAll(symbol.toUpperCase(), predictionType)) {
 			result.add(new Object[] { record.getTimestamp().getTime(), record.getD1(), record.getD2(), record.getD3(), record.getD4(),
 			                record.getD5() });
 		}

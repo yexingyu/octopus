@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.ImmutableList;
+
 @Service
 public class PredictionService {
 	private final static Logger	l	= LoggerFactory.getLogger(PredictionService.class);
@@ -20,12 +22,12 @@ public class PredictionService {
 	public PredictionService() {}
 
 	/**
-	 * getAllOpen
+	 * getAll
 	 *
 	 * @param symbol
 	 * @return
 	 */
-	public List<Prediction> getAllOpen(String symbol, PREDICTION_TYPE type) {
+	public List<Prediction> getAll(String symbol, PREDICTION_TYPE type) {
 		final SqlSession session = factory.openSession();
 		final PredictionMapper mapper = session.getMapper(PredictionMapper.class);
 
@@ -41,7 +43,7 @@ public class PredictionService {
 			}
 		} catch (Exception e) {
 			l.error("PredictionService.getAllOpen: Exception", e);
-			return null;
+			return ImmutableList.of();
 		} finally {
 			session.close();
 		}

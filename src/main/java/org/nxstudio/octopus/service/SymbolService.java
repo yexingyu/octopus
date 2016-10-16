@@ -1,6 +1,5 @@
 package org.nxstudio.octopus.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -63,26 +62,6 @@ public class SymbolService {
 	}
 
 	/**
-	 * getEarliestHistoricalDate
-	 *
-	 * @param symbol
-	 * @return
-	 */
-	public Date getEarliestHistoricalDate(String symbol) {
-		final SqlSession session = factory.openSession();
-		final RawDataYahooHistoricalMapper mapper = session.getMapper(RawDataYahooHistoricalMapper.class);
-
-		try {
-			return mapper.getEarliestHistoricalDate(symbol);
-		} catch (Exception e) {
-			l.error("SymbolService.getEarliestHistoricalDate: Exception", e);
-			return null;
-		} finally {
-			session.close();
-		}
-	}
-
-	/**
 	 * getHistoricalYears
 	 *
 	 * @param symbol
@@ -96,7 +75,7 @@ public class SymbolService {
 			return mapper.getHistoricalYears(symbol);
 		} catch (Exception e) {
 			l.error("SymbolService.getHistoricalYears: Exception", e);
-			return null;
+			return ImmutableList.of();
 		} finally {
 			session.close();
 		}
