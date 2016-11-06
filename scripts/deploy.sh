@@ -9,6 +9,7 @@ export __PWD=${PWD%/}
 cd ${__ScriptPath}/../
 
 cd ~/codes/octopus/
+git pull
 mvn clean
 mvn package
 cp target/octopus-0.0.1-SNAPSHOT-deploy/lib/*.jar ~/octopus/lib/
