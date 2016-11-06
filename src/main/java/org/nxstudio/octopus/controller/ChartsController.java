@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/charts")
 public class ChartsController {
@@ -29,7 +30,6 @@ public class ChartsController {
 	 * @param symbol
 	 * @return
 	 */
-	@CrossOrigin
 	@RequestMapping("data/v0.1/{symbol}")
 	public List<Object[]> getStockData(@PathVariable("symbol") String symbol) {
 		final List<Object[]> result = new LinkedList<>();
@@ -46,7 +46,6 @@ public class ChartsController {
 	 * @param symbol
 	 * @return
 	 */
-	@CrossOrigin
 	@RequestMapping("data/v0.1/{symbol}/dividend")
 	public List<Object[]> getStockDividend(@PathVariable("symbol") String symbol) {
 		final List<Object[]> result = new LinkedList<>();
@@ -63,7 +62,6 @@ public class ChartsController {
 	 * @param type
 	 * @return
 	 */
-	@CrossOrigin
 	@RequestMapping("prediction/v0.1/{symbol}/{type}")
 	public List<Object[]> getPrediction(@PathVariable("symbol") String symbol, @PathVariable("type") String type) {
 		final PREDICTION_TYPE predictionType = PREDICTION_TYPE.valueOf(type.toUpperCase());
